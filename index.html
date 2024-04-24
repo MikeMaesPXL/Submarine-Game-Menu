@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submarine Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-screen">
+    <img id="submarine" src="/assets/submarine.png" alt="Submarine">
+    <div id="score">Score <div class="score-holder"><span>-</span><span id="score-value">0</span><span>-</span></div></div>
+    <div id="menu">
+      <div class="positioning" id="volumecontrol">
+        <label for="volume">Volume</label>
+        <div id="volume-blocks"></div>
+        <input type="range" id="volume" min="0" max="10" value="5">
+      </div>
+      <div class="positioning" id="shakecontrol">
+        <label for="screenShakeSelect">Screen Shake</label>
+        <div id="screenShakeOptions">
+          <h1 id="offOption" class="shake-option active">Off</h1>
+          <h1 id="lowOption" class="shake-option">Low</h1>
+          <h1 id="normalOption" class="shake-option">Hard</h1>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+  <div id="overlay">
+    <div class="overlay-text">Click anywhere to start playing!</div>
+    <div class="overlay-text">Use the arrow up key to navigate the submarine!</div>
+    <div class="overlay-text">Press space 3 times to open the menu!</div>
+  </div>
+
+  <audio id="background-music" loop>
+    <source src="/assets/underwater_sound_wav.wav" type="audio/mpeg">
+    Your browser doesn't support music.
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
