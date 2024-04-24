@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var menuTimeout;
   var spacebarCount = 0;
 
+  const overlay = document.getElementById('overlay');
   overlay.style.display = 'flex';
   let overlayClicked = false;
 
@@ -87,37 +88,35 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
     var volumeSlider = document.getElementById('volume');
-    var volumeBlocks = document.querySelectorAll('.volume-blocks');
     var currentVolume = parseInt(volumeSlider.value);
     volumeSlider.value = currentVolume < 10 ? currentVolume + 1 : 0;
-    updateVolumeBlocks();
+    updateVolume();
   }
 
-  function updateVolumeBlocks() {
+  function updateVolume() {
     var volumeSlider = document.getElementById('volume');
-    var volumeBlocks = document.querySelectorAll('.volume-block');
     var currentVolume = parseInt(volumeSlider.value);
-
-    volumeBlocks.forEach(function(block, index) {
-      block.classList.toggle('active', index <= currentVolume);
-    });
-
-    // Update background music volume
     backgroundMusic.volume = currentVolume / 10;
+    updateVolumeBlocks(currentVolume);
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var volumeBlocksContainer = document.getElementById('volume-blocks');
+  function updateVolumeBlocks(currentVolume) {
+    var volumeBlocks = document.querySelectorAll('.volume-block');
+    volumeBlocks.forEach(function(block, index) {
+      block.classList.toggle('active', index < currentVolume);
+    });
+  }
+
+  var volumeBlocksContainer = document.getElementById('volume-blocks');
     for (var i = 0; i <= 9; i++) {
       var block = document.createElement('div');
       block.classList.add('volume-block');
       volumeBlocksContainer.appendChild(block);
     }
 
-    var volumeSlider = document.getElementById('volume');
-    volumeSlider.addEventListener('input', updateVolumeBlocks);
-    updateVolumeBlocks();
-  });
+  var volumeSlider = document.getElementById('volume');
+  volumeSlider.addEventListener('input', updateVolume);
+  updateVolume(); 
 
   function cycleShakeOption() {
     if (!isMenuOpen() || spacebarCount !== 1) {
