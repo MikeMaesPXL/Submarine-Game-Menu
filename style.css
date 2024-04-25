@@ -1,19 +1,35 @@
+@keyframes breathe {
+  0% {
+    background-size: 100% 100%;
+    background-color: rgba(0, 51, 61, 0.9);
+  }
+  50% {
+    background-size: 110% 110%;
+    background-color: rgba(0, 51, 61, 0.7);
+  }
+  100% {
+    background-size: 100% 100%;
+    background-color: rgba(0, 51, 61, 0.9);
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   font-family: Arial, sans-serif;
-  background-image: url('/assets/bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background:center url('assets/bg.png');
 }
+
+
 
 #game-screen {
   width: 100vw;
   height: 100vh;
+  background: radial-gradient(at top center, rgba(0, 51, 61, .5 ) 0%, rgba(0, 0, 0, 0.2) 80%);
   position: relative;
   overflow: hidden;
+  animation: breathe 8s infinite alternate; /* 8s is de duur van de animatie, en infinite maakt het oneindig, alternate maakt de animatie heen en terug */
 }
 
 #submarine {
@@ -25,7 +41,7 @@ body {
 }
 
 .dot {
-  background-image: url('/assets/puffer.png');
+  background-image: url('assets/puffer.png');
   background-size: cover;
   width: 40px;
   height: 40px;

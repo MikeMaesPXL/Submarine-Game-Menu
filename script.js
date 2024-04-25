@@ -177,16 +177,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const dot = document.createElement('div');
     dot.classList.add('dot');
     gameScreen.appendChild(dot);
-
+  
     const randomY = Math.floor(Math.random() * 90);
     const randomX = Math.floor(Math.random() * 90) + 100;
     dot.style.top = randomY + '%';
     dot.style.left = randomX + 'vw';
-
+  
+    // Generate random hue value between 0 and 360
+    const randomHue = Math.floor(Math.random() * 360);
+    dot.style.filter = `hue-rotate(${randomHue}deg)`;
+  
     const moveDotInterval = setInterval(() => {
       const submarineRect = submarine.getBoundingClientRect();
       const dotRect = dot.getBoundingClientRect();
-
+  
       if (
         dotRect.left < submarineRect.right &&
         dotRect.right > submarineRect.left &&
@@ -207,6 +211,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, 20);
   }
+  
+  
 
   setInterval(createDot, 3000);
   setInterval(moveSubmarine, 20);
